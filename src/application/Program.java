@@ -13,10 +13,10 @@ public class Program {
 		Department dp = new Department(1, "Books");
 		System.out.println(dp);
 		
-		Seller seller = new Seller(2, "Bobson da Silva", "Bobson@gmail.com", new Date(), 2000.0, dp);
-		System.out.println(seller);
 		
 		SellerDao sellerDao = DaoFactory.createSellerDao();
+		Seller seller = sellerDao.findById(1);
+		System.out.println(seller);
 	}
 
 }
