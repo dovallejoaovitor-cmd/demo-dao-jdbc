@@ -39,18 +39,22 @@ public class Program {
 		}
 		
 		System.out.println("=== TEST 4: seller INSERT ===");
-		System.out.println("Name: ");
-		String sellerName = sc.nextLine();
-		System.out.println("Email: ");
-		String email = sc.next();
-		System.out.println("Base Salary: ");
-		double baseSalary = sc.nextDouble();
 		
-		Seller newSeller = new Seller(null, sellerName, email, new Date(), baseSalary, dp);
+		
+		Seller newSeller = new Seller(null, "Greg", "greg@gmail.com", new Date(), 2000.0, dp);
 		
 		sellerDao.insert(newSeller);
 		System.out.println("Inserted! New id = " + newSeller.getId());
 				
+		System.out.println("=== TEST 5: seller UPDATE ===");
+		seller = sellerDao.findById(1);
+		seller.setName("Martha Waine");
+		seller.setEmail("wainemartha@gmail.com");
+		seller.setBaseSalary(4200.0);
+		sellerDao.update(seller);
+		
+		System.out.println("Update completed!");
+		
 		sc.close();
 	}
 
