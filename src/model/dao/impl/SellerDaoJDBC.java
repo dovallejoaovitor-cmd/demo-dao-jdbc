@@ -96,7 +96,23 @@ PreparedStatement ps = null;
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+		PreparedStatement ps = null;
+		try {
+			
+			ps = conn.prepareStatement("DELETE FROM seller "
+					+ "WHERE Id = ?",
+					Statement.RETURN_GENERATED_KEYS
+					);
+			
+			ps.setInt(1, id);
+			
+			ps.executeUpdate();
+			
+		}catch(SQLException e) {
+			throw new DbException("Unnexpected error! " + e.getMessage());
+		}finally {
+			DB.closeStatement(ps);
+		}
 		
 	}
 
